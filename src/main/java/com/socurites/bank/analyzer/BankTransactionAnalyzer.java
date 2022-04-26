@@ -22,7 +22,7 @@ public class BankTransactionAnalyzer {
 
         final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFromCSV(lines);
 
-        System.out.println("The total for all transactions is " + caclulateTotalAmount(bankTransactions));
+        System.out.println("The total for all transactions is " + calculateTotalAmount(bankTransactions));
         System.out.println("The total for all transactions in January is " + selectInMonth(bankTransactions, Month.JANUARY));
     }
 
@@ -30,7 +30,9 @@ public class BankTransactionAnalyzer {
         return null;
     }
 
-    private static String caclulateTotalAmount(List<BankTransaction> bankTransactions) {
-        return null;
+    private static double calculateTotalAmount(List<BankTransaction> bankTransactions) {
+        return bankTransactions.stream()
+                .mapToDouble(BankTransaction::getAmount)
+                .sum();
     }
 }
