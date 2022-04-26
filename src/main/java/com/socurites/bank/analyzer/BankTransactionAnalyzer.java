@@ -2,6 +2,7 @@ package com.socurites.bank.analyzer;
 
 import com.socurites.bank.domain.BankTransaction;
 import com.socurites.bank.parser.BankStatementCSVParser;
+import com.socurites.bank.processor.BankStatementProcessor;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,21 +24,7 @@ public class BankTransactionAnalyzer {
 
         final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFromCSV(lines);
 
-        System.out.println("The total for all transactions is " + calculateTotalAmount(bankTransactions));
-        System.out.println("The total for all transactions in January is " + selectInMonth(bankTransactions, Month.JANUARY));
-    }
-
-    private static double selectInMonth(List<BankTransaction> bankTransactions, Month month) {
-        return calculateTotalAmount(
-                bankTransactions.stream()
-                        .filter(t -> month == t.getDate().getMonth())
-                        .collect(Collectors.toList())
-        );
-    }
-
-    private static double calculateTotalAmount(List<BankTransaction> bankTransactions) {
-        return bankTransactions.stream()
-                .mapToDouble(BankTransaction::getAmount)
-                .sum();
+        System.out.println("The total for all transactions is " + BankStatementProcessor.calculateTotalAmount(bankTransactions));
+        System.out.println("The total for all transactions in January is " + BankStatementProcessor.selectInMonth(bankTransactions, Month.JANUARY));
     }
 }
