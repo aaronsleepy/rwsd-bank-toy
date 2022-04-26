@@ -20,4 +20,12 @@ public class BankStatementProcessor {
                         .collect(Collectors.toList())
         );
     }
+
+    public static double calculateTotalForCategory(List<BankTransaction> bankTransactions, String category) {
+        return calculateTotalAmount(
+            bankTransactions.stream()
+                    .filter(t -> t.getDescription().equals(category))
+                    .collect(Collectors.toList())
+        );
+    }
 }
