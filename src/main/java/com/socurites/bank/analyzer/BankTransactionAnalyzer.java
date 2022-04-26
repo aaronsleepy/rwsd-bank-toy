@@ -23,6 +23,10 @@ public class BankTransactionAnalyzer {
 
         final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFromCSV(lines);
 
+        collectSummary(bankTransactions);
+    }
+
+    private static void collectSummary(final List<BankTransaction> bankTransactions) {
         System.out.println("The total for all transactions is " + BankStatementProcessor.calculateTotalAmount(bankTransactions));
         System.out.println("The total for all transactions in January is " + BankStatementProcessor.selectInMonth(bankTransactions, Month.JANUARY));
     }
