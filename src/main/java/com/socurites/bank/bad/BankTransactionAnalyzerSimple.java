@@ -1,4 +1,4 @@
-package com.socurites.bank;
+package com.socurites.bank.bad;
 
 import java.io.IOException;
 import java.nio.file.Files;
