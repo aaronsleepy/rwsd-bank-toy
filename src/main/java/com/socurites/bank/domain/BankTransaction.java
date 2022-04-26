@@ -1,9 +1,6 @@
 package com.socurites.bank.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -11,6 +8,7 @@ import java.time.LocalDate;
 @Getter
 @ToString
 @EqualsAndHashCode
+@Builder
 public class BankTransaction {
     private final LocalDate date;
     private final double amount;
