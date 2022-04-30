@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.time.Month;
 import java.util.List;
 
-public class BankTransactionAnalyzer {
+public class BankStatementAnalyzer {
     public static final String RESOURCES = "src/main/resources/";
 
     public static void main(String[] args) throws IOException {

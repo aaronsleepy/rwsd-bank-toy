@@ -9,7 +9,7 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class BankTransactionAnalyzerSimpleProblematic {
+public class BankAnalyzerSimpleProblematic {
     public static final String RESOURCES = "src/main/resources";
 
     public static void main(String[] args) throws IOException {
