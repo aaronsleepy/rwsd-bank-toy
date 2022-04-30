@@ -1,12 +1,14 @@
 package com.socurites.bank.parser;
 
 import com.socurites.bank.domain.BankTransaction;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class BankStatementCSVParser implements BankStatementParser {
     private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final String DELIMETER = ",";
