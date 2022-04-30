@@ -15,9 +15,12 @@ public class BankStatementAnalyzer {
     public static final String RESOURCES = "src/main/resources/";
 
     public static void main(String[] args) throws IOException {
+        analyze(args[0]);
+    }
+
+    private static void analyze(String fileName) throws IOException {
         final BankStatementCSVParser bankStatementParser = new BankStatementCSVParser();
 
-        final String fileName = args[0];
         final Path path = Paths.get(RESOURCES + fileName);
         List<String> lines = Files.readAllLines(path);
 
