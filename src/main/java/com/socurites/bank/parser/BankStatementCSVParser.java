@@ -7,17 +7,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BankStatementCSVParser {
+public class BankStatementCSVParser implements BankStatementParser {
     private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final String DELIMETER = ",";
 
-    public List<BankTransaction> parseLinesFromCSV(final List<String> lines) {
+    @Override
+    public List<BankTransaction> parseLinesFrom(final List<String> lines) {
         return lines.stream()
-                .map(BankStatementCSVParser::parseFromCSV)
+                .map(this::parseFrom)
                 .collect(Collectors.toList());
     }
 
-    private static BankTransaction parseFromCSV(final String line) {
+    @Override
+    public BankTransaction parseFrom(final String line) {
         final String[] columns = line.split(DELIMETER);
 
         return BankTransaction.builder()
