@@ -4,6 +4,7 @@ import com.socurites.bank.domain.BankTransaction;
 
 import java.time.Month;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class BankStatementProcessor {
@@ -35,9 +36,9 @@ public class BankStatementProcessor {
             .sum();
     }
 
-    public List<BankTransaction> findTransactionsGte(final int amount) {
+    public List<BankTransaction> findTransactions(Predicate<BankTransaction> predicate) {
         return this.bankTransactions.stream()
-                .filter(t -> t.getAmount() >= amount)
+                .filter(predicate)
                 .collect(Collectors.toList());
     }
 }
