@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BankStatementProcessor {
-    public static double calculateTotalAmount(List<BankTransaction> bankTransactions) {
+    public double calculateTotalAmount(List<BankTransaction> bankTransactions) {
         return bankTransactions.stream()
                 .mapToDouble(BankTransaction::getAmount)
                 .sum();
     }
 
-    public static double selectInMonth(List<BankTransaction> bankTransactions, Month month) {
+    public double selectInMonth(List<BankTransaction> bankTransactions, Month month) {
         return calculateTotalAmount(
                 bankTransactions.stream()
                         .filter(t -> month == t.getDate().getMonth())
@@ -21,7 +21,7 @@ public class BankStatementProcessor {
         );
     }
 
-    public static double calculateTotalForCategory(List<BankTransaction> bankTransactions, String category) {
+    public double calculateTotalForCategory(List<BankTransaction> bankTransactions, String category) {
         return calculateTotalAmount(
             bankTransactions.stream()
                     .filter(t -> t.getDescription().equals(category))
