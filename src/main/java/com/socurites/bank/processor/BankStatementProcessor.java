@@ -20,7 +20,7 @@ public class BankStatementProcessor {
                 .sum();
     }
 
-    public double selectInMonth(Month month) {
+    public double calculateTotalInMonth(Month month) {
         return this.bankTransactions.stream()
                 .filter(t -> month == t.getDate().getMonth())
                 .collect(Collectors.toList())
