@@ -34,4 +34,10 @@ public class BankStatementProcessor {
             .stream().mapToDouble(BankTransaction::getAmount)
             .sum();
     }
+
+    public List<BankTransaction> findTransactionsGte(final int amount) {
+        return this.bankTransactions.stream()
+                .filter(t -> t.getAmount() >= amount)
+                .collect(Collectors.toList());
+    }
 }
