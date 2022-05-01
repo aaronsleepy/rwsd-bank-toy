@@ -21,19 +21,25 @@ public class BankStatementProcessor {
     }
 
     public double calculateTotalInMonth(Month month) {
-        return this.bankTransactions.stream()
-                .filter(t -> month == t.getDate().getMonth())
-                .collect(Collectors.toList())
-                .stream().mapToDouble(BankTransaction::getAmount)
-                .sum();
+        return summarizeTransactions(
+                this.bankTransactions.stream()
+                        .filter(t -> month == t.getDate().getMonth())
+                        .collect(Collectors.toList())
+        );
     }
 
     public double calculateTotalForCategory(String category) {
-        return this.bankTransactions.stream()
-            .filter(t -> t.getDescription().equals(category))
-            .collect(Collectors.toList())
-            .stream().mapToDouble(BankTransaction::getAmount)
-            .sum();
+        return summarizeTransactions(
+                this.bankTransactions.stream()
+                        .filter(t -> t.getDescription().equals(category))
+                        .collect(Collectors.toList())
+        );
+    }
+
+    private static double summarizeTransactions(List<BankTransaction> transactions) {
+        return transactions.stream()
+                .mapToDouble(BankTransaction::getAmount)
+                .sum();
     }
 
     public List<BankTransaction> findTransactions(Predicate<BankTransaction> predicate) {
