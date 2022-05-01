@@ -47,4 +47,8 @@ public class BankStatementProcessor {
                 .filter(predicate)
                 .collect(Collectors.toList());
     }
+
+    public List<BankTransaction> findTransactionsGte(final int amount) {
+        return findTransactions(t -> t.getAmount() >= amount);
+    }
 }
