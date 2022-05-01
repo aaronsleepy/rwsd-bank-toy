@@ -1,8 +1,10 @@
 package com.socurites.bank.processor;
 
 import com.socurites.bank.domain.BankTransaction;
+import com.socurites.bank.domain.SummaryStatistics;
 
 import java.time.Month;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -12,6 +14,19 @@ public class BankStatementProcessor {
 
     public BankStatementProcessor(List<BankTransaction> bankTransactions) {
         this.bankTransactions = bankTransactions;
+    }
+
+    public SummaryStatistics summarizeTransactions() {
+        DoubleSummaryStatistics doubleSummaryStatistics = bankTransactions.stream()
+                .mapToDouble(BankTransaction::getAmount)
+                .summaryStatistics();
+
+        return SummaryStatistics.builder()
+                .sum(doubleSummaryStatistics.getSum())
+                .max(doubleSummaryStatistics.getMax())
+                .min(doubleSummaryStatistics.getMin())
+                .average(doubleSummaryStatistics.getAverage())
+                .build();
     }
 
     public double calculateTotalAmount() {
